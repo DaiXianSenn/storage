@@ -1,0 +1,25 @@
+server:
+  port: 8081
+spring:
+  application:
+    #应用的名称 可选
+    name: storage_DCW
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:stock_manager/?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: attemptnumber3
+mybatis-plus:
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射 translation:将下划线映射到驼峰大小写
+    #例子:address_book--->AddressBook
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      #配置主键生成策略：
+      id-type: ASSIGN_ID
+
+reggie:
+  path: D:\img\
