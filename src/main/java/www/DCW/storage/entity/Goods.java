@@ -2,6 +2,8 @@ package www.DCW.storage.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
@@ -11,7 +13,9 @@ import lombok.Data;
  * Description:
  */
 @Data
+@TableName("软工2001_18_物料表")
 public class Goods {
+
 
 	@TableField(value = "物料代码")
 	private String goodsId;   //物料代码
