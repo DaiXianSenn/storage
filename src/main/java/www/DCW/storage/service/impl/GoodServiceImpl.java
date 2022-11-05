@@ -6,6 +6,8 @@ import www.DCW.storage.entity.Goods;
 import www.DCW.storage.mapper.GoodsMapper;
 import www.DCW.storage.service.GoodsService;
 
+import java.util.List;
+
 /**
  * Author: JhonDai
  * Date: 2022/11/05/16:00
@@ -14,4 +16,12 @@ import www.DCW.storage.service.GoodsService;
  */
 @Service
 public class GoodServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements GoodsService {
+
+
+
+    @Override
+    public List<Goods> getAll() {
+
+        return null;
+    }
 }
