@@ -1,10 +1,10 @@
 package www.DCW.storage.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.stereotype.Service;
 import www.DCW.storage.entity.Goods;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author: JhonDai
@@ -16,5 +16,8 @@ import java.util.List;
 public interface GoodsService extends IService<Goods> {
 
 
-    public List<Goods> getAll();
+    Map<String, Object> getAll(Map<String, Object> param);
+    List<Goods> getAll(Goods goods);
+
+    String getGoodsIdByGoodsName(String goodName);
 }

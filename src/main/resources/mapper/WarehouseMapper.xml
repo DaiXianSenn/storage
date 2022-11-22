@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.DCW.storage.mapper.WarehouseMapper">
+
+    <select id="getAll" resultType="www.DCW.storage.entity.Warehouse" statementType="CALLABLE" resultMap="WarehouseMap">
+        {
+            call getWarehouseAll()
+        }
+    </select>
+    <resultMap type="www.DCW.storage.entity.Warehouse" id="WarehouseMap" >
+        <result property="id" column="单号" />
+        <result property="times" column="次数" />
+        <result property="type" column="类型" />
+        <result property="goodId" column="物料代码" />
+        <result property="userId" column="操作人员代码"/>
+        <result property="date" column="日期"/>
+        <result property="amount" column="数量"/>
+        <result property="remarks" column="备注"/>
+    </resultMap>
+
+
+    <resultMap id="GoodsMap" type="www.DCW.storage.entity.Goods">
+        <result column="物料代码" property="goodsId" />
+        <result column="物料名称" property="goodsName"/>
+        <result column="规格型号" property="type"/>
+        <result column="计量单位" property="goodsUnit" />
+        <result column="库存数量" property="amount"/>
+        <result column="备注" property="remarks"/>
+
+    </resultMap>
+
+</mapper>

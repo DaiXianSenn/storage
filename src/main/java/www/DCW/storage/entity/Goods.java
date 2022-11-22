@@ -17,7 +17,7 @@ import lombok.Data;
 public class Goods {
 
 
-	@TableField(value = "物料代码")
+	@TableId(value = "物料代码")
 	private String goodsId;   //物料代码
 
 	@TableField(value = "物料名称")

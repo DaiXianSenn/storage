@@ -1,7 +1,10 @@
 package www.DCW.storage.entity;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Author: JhonDai
@@ -10,6 +13,9 @@ import lombok.Data;
  * Description:
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Warehouse {
 
 	private String id;  //单号
@@ -18,7 +24,7 @@ public class Warehouse {
 
 	private int type; //类型(1：入库 2：出库)
 
-	private String gId;  //物料代码
+	private String goodId;  //物料代码
 
 	private String userId; //操作人员代码
 

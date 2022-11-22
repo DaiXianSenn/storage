@@ -1,5 +1,6 @@
 package www.DCW.storage.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import www.DCW.storage.entity.Goods;
@@ -7,6 +8,7 @@ import www.DCW.storage.mapper.GoodsMapper;
 import www.DCW.storage.service.GoodsService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author: JhonDai
@@ -18,10 +20,31 @@ import java.util.List;
 public class GoodServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements GoodsService {
 
 
+    private final GoodsMapper goodsMapper;
+
+    public GoodServiceImpl(GoodsMapper goodsMapper) {
+        this.goodsMapper = goodsMapper;
+    }
 
     @Override
-    public List<Goods> getAll() {
+    public Map<String, Object> getAll(Map<String, Object> param) {
 
-        return null;
+        return goodsMapper.getAll(param);
+    }
+
+    @Override
+    public List<Goods> getAll(Goods goods) {
+        LambdaQueryWrapper<Goods> goodsLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        goodsLambdaQueryWrapper.like(goods.getGoodsId()!=null,Goods::getGoodsId,goods.getGoodsId());
+        goodsLambdaQueryWrapper.like(goods.getGoodsName()!=null,Goods::getGoodsName,goods.getGoodsName());
+        goodsLambdaQueryWrapper.like(goods.getType()!=null,Goods::getType,goods.getType());
+        goodsLambdaQueryWrapper.like(goods.getRemarks()!=null,Goods::getRemarks,goods.getRemarks());
+        List<Goods> list = this.list(goodsLambdaQueryWrapper);
+        return list;
+    }
+
+    @Override
+    public String getGoodsIdByGoodsName(String goodName) {
+        return goodsMapper.getGoodsIdByGoodsName(goodName);
     }
 }

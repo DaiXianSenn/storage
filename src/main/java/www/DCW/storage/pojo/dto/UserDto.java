@@ -1,4 +1,4 @@
-package www.DCW.storage.dto;
+package www.DCW.storage.pojo.dto;
 
 /**
  * Author: JhonDai

@@ -1,4 +1,4 @@
-package www.DCW.storage.vo;
+package www.DCW.storage.pojo.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
