@@ -1,6 +1,10 @@
 package www.DCW.storage.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,26 +16,43 @@ import lombok.NoArgsConstructor;
  * Version: 1.0
  * Description:
  */
+@ApiModel("仓库表")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Warehouse {
 
+	@ApiModelProperty("单号")
+	@TableField(value = "单号")
 	private String id;  //单号
 
+	@ApiModelProperty("次数")
+	@TableField(value = "次数")
 	private int times;  //次数(同单号多条记录)
 
+	@ApiModelProperty("类型(1：入库 2：出库)")
+	@TableField(value = "类型")
 	private int type; //类型(1：入库 2：出库)
 
+	@ApiModelProperty("物料代码")
+	@TableField(value = "物料代码")
 	private String goodId;  //物料代码
 
+	@ApiModelProperty("操作人员代码")
+	@TableField(value = "操作人员代码")
 	private String userId; //操作人员代码
 
+	@ApiModelProperty("日期")
+	@TableField(value = "日期")
 	private String date;  //日期
 
+	@ApiModelProperty("数量")
+	@TableField(value = "数量")
 	private int amount;  //数量
 
+	@ApiModelProperty("备注")
+	@TableField(value = "备注")
 	private String remarks; //备注
 
 }

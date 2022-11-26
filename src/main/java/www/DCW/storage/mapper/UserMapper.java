@@ -2,7 +2,7 @@ package www.DCW.storage.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import www.DCW.storage.entity.Users;
+import www.DCW.storage.entity.User;
 
 /**
  * Author: JhonDai
@@ -11,5 +11,5 @@ import www.DCW.storage.entity.Users;
  * Description:
  */
 @Mapper
-public interface UserMapper extends BaseMapper<Users> {
+public interface UserMapper extends BaseMapper<User> {
 }

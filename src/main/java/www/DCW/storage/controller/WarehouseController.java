@@ -1,10 +1,9 @@
 package www.DCW.storage.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import www.DCW.storage.common.R;
 import www.DCW.storage.entity.Warehouse;
 import www.DCW.storage.service.WarehouseService;
 
@@ -24,13 +23,13 @@ public class WarehouseController {
     @Autowired
     private WarehouseService warehouseService;
 
+
+    @PostMapping("/save")
     //调用入库的过程
-    public String saveWarehouse(){
-
-
-        return null;
+    public R<String> saveWarehouse(@RequestBody Warehouse warehouse){
+        return warehouseService.saveWarehouse(warehouse);
     }
-    //利用存储过程来获取所有的数据
+
 
 
     //这里调用了存储过程
@@ -39,9 +38,17 @@ public class WarehouseController {
 
         List<Warehouse> all = warehouseService.getAll();
         System.out.println(all.toString());
-
         return all;
     }
+
+
+
+
+
+
+
+
+
 
 
 

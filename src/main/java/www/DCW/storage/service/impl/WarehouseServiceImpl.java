@@ -2,6 +2,7 @@ package www.DCW.storage.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import www.DCW.storage.common.R;
@@ -35,7 +36,7 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
 
     /**
      * 出入库开单
-     * @param  wareahouseVo
+     * @param  wareahouseVo 前端实体接口
      * @return 操作信息："操作成功" or "操作失败"
      */
     @Override
@@ -50,6 +51,7 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
 
 
 
+
         //Warehouse.builder().id();
 
 
@@ -58,17 +60,36 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
         return null;
     }
 
+    //入仓操作
     @Override
-    public String saveWarehouse(Warehouse warehouse) {
+    public R<String> saveWarehouse(Warehouse warehouse) {
+
+
+        if (warehouse.getGoodId()==null) return R.error("请选择物料");
+
+/*        warehouse.getId()
+        warehouse.getTimes()
+        warehouse.getType()
+        warehouse.getGoodId()
+        warehouse.getUserId()
+        warehouse.getDate()
+        warehouse.getAmount()
+        warehouse.getRemarks()
+                warehouse.getId(),
+                warehouse.getTimes(),
+                warehouse.getType(),
+                warehouse.getGoodId(),
+                warehouse.getUserId(),
+                "2022-01-02",
+                warehouse.getAmount(),
+                warehouse.getRemarks()*/
+        String goodId = warehouse.getGoodId();
+        warehouseMapper.saveWarehouse(warehouse);
 
 
 
-        if (warehouse.getGoodId()==null) return "请选择物料";
 
-
-        String s = this.saveWarehouse(warehouse);
-
-        return "操作成功";
+        return R.success("操作成功");
     }
 
 

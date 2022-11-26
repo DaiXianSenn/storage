@@ -23,7 +23,4 @@ public class Bill {
 	private int type;
 
 	private int amount;
-	
-
-	
 }

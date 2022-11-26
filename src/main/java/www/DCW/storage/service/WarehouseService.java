@@ -20,7 +20,7 @@ public interface WarehouseService extends IService<Warehouse> {
     //入库过程
     R<String> inWarehouse(WareahouseVo wareahouseVo);
 
-    String saveWarehouse(Warehouse warehouse);
+    R<String> saveWarehouse(Warehouse warehouse);
 
 
 

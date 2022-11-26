@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="www.DCW.storage.mapper.WarehouseMapper">
+    <insert id="saveWarehouse" statementType="CALLABLE">
+        {
+            call `进出仓开单`(#{id,mode=IN,jdbcType=VARCHAR},#{times,mode=IN,jdbcType=INTEGER},#{type,mode=IN,jdbcType=INTEGER},#{goodId,mode=IN,jdbcType=VARCHAR},#{userId,mode=IN,jdbcType=VARCHAR},#{date,mode=IN,jdbcType=VARCHAR},#{amount,mode=IN,jdbcType=INTEGER},#{remarks,mode=IN,jdbcType=VARCHAR})
+        }
+    </insert>
 
     <select id="getAll" resultType="www.DCW.storage.entity.Warehouse" statementType="CALLABLE" resultMap="WarehouseMap">
         {
             call getWarehouseAll()
         }
     </select>
+
     <resultMap type="www.DCW.storage.entity.Warehouse" id="WarehouseMap" >
         <result property="id" column="单号" />
         <result property="times" column="次数" />
@@ -26,7 +32,6 @@
         <result column="计量单位" property="goodsUnit" />
         <result column="库存数量" property="amount"/>
         <result column="备注" property="remarks"/>
-
     </resultMap>
 
 </mapper>

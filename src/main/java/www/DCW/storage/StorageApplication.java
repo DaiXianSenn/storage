@@ -3,6 +3,7 @@ package www.DCW.storage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 
 /**
  * Author: JhonDai
@@ -10,6 +11,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  * Version: 1.0
  * Description:
  */
+
 @SpringBootApplication
 public class StorageApplication {
     public static void main(String[] args) {

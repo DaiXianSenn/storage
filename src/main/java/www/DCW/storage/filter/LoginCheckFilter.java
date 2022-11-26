@@ -25,7 +25,7 @@ import java.io.IOException;
  * 要在应用那边增加@ServletComponentScan//扫描WebFilter部件
  */
 @Slf4j
-@WebFilter(filterName = "loginCheckFilter", urlPatterns = "/*")
+//@WebFilter(filterName = "loginCheckFilter", urlPatterns = "/*")
 public class LoginCheckFilter implements Filter {
     //路径匹配器，支持通配符*
     public static final AntPathMatcher PATH_MATCHER =new AntPathMatcher();
@@ -46,18 +46,16 @@ public class LoginCheckFilter implements Filter {
                 "/backend/**",
                 "/front/**",
                 "/common/**"
-        } ;
+        };
 
         //2、判断请求是否合理
         boolean check =check(urls,requestURI);
-
         //3、如果不需要处理，则直接放行
         if(check){
             log.info("本次请求{}不需要处理",requestURI);
             filterChain.doFilter(request,response);
             return;
         }
-
         //4、判断登录状态，如果已登录，则直接放行
         if(request.getSession().getAttribute("employee")!=null){
             log.info("用户已登录，用户id为：{}",request.getSession().getAttribute("employee"));
@@ -67,14 +65,9 @@ public class LoginCheckFilter implements Filter {
             filterChain.doFilter(request,response);
             return;
         }
-
         //5、如果未登录 则返回未登录结果
         response.getWriter().write(JSON.toJSONString(R.error("NOTLOGIN")));
-
         log.info("用户未登录，跳转至登录界面");
-
-
-
 
     }
 
