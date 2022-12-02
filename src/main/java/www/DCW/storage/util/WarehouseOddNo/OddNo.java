@@ -23,10 +23,10 @@ public class OddNo {
     public static String getWarehouseOddNo(){
         //获取随机数
 
-        int randomInt=random.nextInt(10);
+        int randomInt=random.nextInt(10000);
         Calendar calendar= Calendar.getInstance();
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyyMMddhhmmss");
-        String format = "DCWHWareHouse"+dateFormat.format(calendar.getTime())+randomInt;
+        String format = "W"+dateFormat.format(calendar.getTime())+randomInt;
         log.info("正在生成仓库单号： {}",format);
         return format;
     }

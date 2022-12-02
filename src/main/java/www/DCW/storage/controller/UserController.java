@@ -1,10 +1,10 @@
 package www.DCW.storage.controller;
 
 
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +42,7 @@ public class UserController {
      * @return 登录信息
      */
     @PostMapping("/login")
+    @ApiOperation(value = "登录",notes = "")
     public R<String> login(@RequestBody User user){
         return userService.login(user);
     }
@@ -52,6 +53,7 @@ public class UserController {
      * @return 注册信息
      */
     @PostMapping("/register")
+    @ApiOperation(value = "注册",notes = "")
     public R<String> save(@RequestBody User user){
         return userService.saveUser(user);
     }
@@ -63,6 +65,7 @@ public class UserController {
      * @return 更新信息
      */
     @PostMapping("/update")
+    @ApiOperation(value = "更新用户信息",notes = "")
     public R<String> update(@RequestBody User user){
         return userService.update(user);
     }
@@ -70,5 +73,6 @@ public class UserController {
 
 
     @PostMapping("/getAll")
+    @ApiOperation(value = "获取所有用户",notes = "")
     public R<List<User>> getAll(){return userService.getAll();}
 }

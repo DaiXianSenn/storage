@@ -2,7 +2,7 @@ package www.DCW.storage.entity;
 
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import io.swagger.annotations.Api;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class Warehouse {
 
 	@ApiModelProperty("单号")
-	@TableField(value = "单号")
+	@TableId(value = "单号")
 	private String id;  //单号
 
 	@ApiModelProperty("次数")

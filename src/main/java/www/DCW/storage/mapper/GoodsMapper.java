@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import www.DCW.storage.entity.Goods;
+import www.DCW.storage.pojo.dto.GoodsIdWithNameDto;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -19,4 +21,6 @@ public interface GoodsMapper extends BaseMapper<Goods> {
     Map<String,Object> getAll(Map<String,Object> param);
 
     String getGoodsIdByGoodsName(String goodName);
+
+    List<GoodsIdWithNameDto> getIdAndName();
 }

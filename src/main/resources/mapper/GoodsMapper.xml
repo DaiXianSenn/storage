@@ -10,7 +10,10 @@
         }
     </select>
     <select id="getGoodsIdByGoodsName" resultType="java.lang.String">
-        select 物料代码 AS 'goodsId'from storage_dcwh.软工2001_18_物料表 where 物料名称 = #{goodName} Limit 0,1 ;
+        select `物料代码` AS 'goodsId'from storage_dcwh.软工2001_18_物料表 where 物料名称 = #{goodName} Limit 0,1 ;
+    </select>
+    <select id="getIdAndName" resultType="www.DCW.storage.pojo.dto.GoodsIdWithNameDto">
+        select `物料代码` AS `goodsId` ,`物料名称` As goodsName from storage_dcwh.软工2001_18_物料表;
     </select>
 
     <resultMap id="rm" type="www.DCW.storage.entity.Goods">

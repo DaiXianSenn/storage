@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.DCW.storage.mapper.PermissionMapper">
+    <!--namespace根据自己需要创建的的mapper的路径和名称填写-->
+    <select id="getById" resultType="www.DCW.storage.entity.Permission">
+        select `人员代码` AS userId,`人员档案管理` AS PersonPermission,`物料档案管理` AS GoodsPermission,`进出仓管理` AS WarehousePermission,`管理权限` AS ManagePermission,`统计打印` AS PrintPermission
+        from storage_dcwh.`软工2001_18_权限管理`
+        where `人员代码` =#{userId}
+    </select>
+</mapper>

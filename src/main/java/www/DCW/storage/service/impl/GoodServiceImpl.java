@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import www.DCW.storage.entity.Goods;
 import www.DCW.storage.mapper.GoodsMapper;
+import www.DCW.storage.pojo.dto.GoodsIdWithNameDto;
 import www.DCW.storage.service.GoodsService;
 
 import java.util.List;
@@ -46,5 +47,11 @@ public class GoodServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements 
     @Override
     public String getGoodsIdByGoodsName(String goodName) {
         return goodsMapper.getGoodsIdByGoodsName(goodName);
+    }
+
+    @Override
+    public List<GoodsIdWithNameDto> getIdAndName() {
+
+        return  goodsMapper.getIdAndName();
     }
 }

@@ -1,8 +1,9 @@
 package www.DCW.storage.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.stereotype.Service;
+
 import www.DCW.storage.entity.Goods;
+import www.DCW.storage.pojo.dto.GoodsIdWithNameDto;
 
 import java.util.List;
 import java.util.Map;
@@ -21,4 +22,6 @@ public interface GoodsService extends IService<Goods> {
     List<Goods> getAll(Goods goods);
 
     String getGoodsIdByGoodsName(String goodName);
+
+    List<GoodsIdWithNameDto> getIdAndName();
 }

@@ -3,7 +3,8 @@ package www.DCW.storage.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import www.DCW.storage.common.R;
 import www.DCW.storage.entity.Warehouse;
-import www.DCW.storage.pojo.vo.WareahouseVo;
+
+import www.DCW.storage.pojo.vo.WarehouseVoList;
 
 import java.util.List;
 
@@ -17,11 +18,11 @@ import java.util.List;
 public interface WarehouseService extends IService<Warehouse> {
     List<Warehouse> getAll();
 
-    //入库过程
-    R<String> inWarehouse(WareahouseVo wareahouseVo);
+
+//    R<String> inWarehouse(WareahouseVo wareahouseVo);
 
     R<String> saveWarehouse(Warehouse warehouse);
 
-
+    R<String> saveWarehouseByList(WarehouseVoList warehouse);
 
 }
