@@ -66,8 +66,4 @@ public class WarehouseController {
         return warehouseService.saveWarehouseByList(warehouse);
     }
 
-
-    public R<String> saveWarehouseByList1( WarehouseVoList warehouse){
-        return warehouseService.saveWarehouseByList(warehouse);
-    }
 }
