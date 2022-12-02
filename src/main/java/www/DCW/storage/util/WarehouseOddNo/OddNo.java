@@ -39,4 +39,13 @@ public class OddNo {
         log.info("正在生成用户UUID： {}",format);
         return format;
     }
+
+    public static String getGoodsNo(){
+        int randomInt=random.nextInt(100);
+        Calendar calendar= Calendar.getInstance();
+        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyyMMddhhmmss");
+        String format = "G_"+dateFormat.format(calendar.getTime())+randomInt;
+        log.info("正在生成用户UUID： {}",format);
+        return format;
+    }
 }

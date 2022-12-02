@@ -22,9 +22,9 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     #修改映射map,返回所有值,即便是null
     call-setters-on-nulls: true
-  global-config:
-    db-config:
+#  global-config:
+#    db-config:
       #配置主键生成策略：
-      id-type: ASSIGN_ID
+#      id-type: ASSIGN_ID
   mapper-locations: classpath:mapper/*.xml
 

@@ -10,9 +10,11 @@ import www.DCW.storage.common.R;
 import www.DCW.storage.entity.Goods;
 import www.DCW.storage.pojo.dto.GoodsIdWithNameDto;
 import www.DCW.storage.service.GoodsService;
+import www.DCW.storage.util.WarehouseOddNo.OddNo;
 
 
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -76,7 +78,12 @@ public class GoodController {
     @PostMapping("/saveOrUpdate")
     @ApiOperation(value = "物料更新或者存入",notes = "你如果没有传入id是传入 如果传入id是更新")
     public R<Boolean> saveOrUpdate(@RequestBody Goods goods){
-        //if(goods.getGoodsId()==null)return R.error("请输入物料id信息");
+
+        if(goods.getGoodsId()==null&& Objects.equals(goods.getGoodsId(), "")){
+            goods.setGoodsId(OddNo.getGoodsNo());
+        }
+        System.out.println("goods:"+goods.getGoodsId());
+        log.info("物料id：{}",OddNo.getGoodsNo());
         return R.success(goodsService.saveOrUpdate(goods));
     }
 

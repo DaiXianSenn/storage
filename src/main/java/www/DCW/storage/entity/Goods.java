@@ -1,6 +1,7 @@
 package www.DCW.storage.entity;
 
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -20,7 +21,7 @@ import lombok.Data;
 public class Goods {
 
 	@ApiModelProperty("物料代码")
-	@TableId(value = "物料代码")
+	@TableId(value = "物料代码",type = IdType.INPUT)
 	private String goodsId;   //物料代码
 
 	@ApiModelProperty("物料名称")

@@ -52,6 +52,9 @@ public class WarehouseController {
 
 
     /**
+     * ceshi
+     */
+    /**
      * 批量物料
      * @param warehouse 仓单实体
      * @return 操作信息
@@ -60,6 +63,11 @@ public class WarehouseController {
     @Transactional(rollbackFor = Exception.class)//指定回滚 ，遇到异常时Exception时回滚
     @ApiOperation(value = "多物料出库入库（List）",notes = "type 类型(1：入库 2：出库) 要注意结构")
     public R<String> saveWarehouseByList(@RequestBody WarehouseVoList warehouse){
+        return warehouseService.saveWarehouseByList(warehouse);
+    }
+
+
+    public R<String> saveWarehouseByList1( WarehouseVoList warehouse){
         return warehouseService.saveWarehouseByList(warehouse);
     }
 }

@@ -29,7 +29,6 @@ public class GoodServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements 
 
     @Override
     public Map<String, Object> getAll(Map<String, Object> param) {
-
         return goodsMapper.getAll(param);
     }
 

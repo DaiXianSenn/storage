@@ -1,6 +1,7 @@
 package www.DCW.storage.entity;
 
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -22,7 +23,7 @@ public class User {
 
 	@ApiModelProperty("人员代码")
 	//@TableField(value = "人员代码")待测试
-	@TableId(value = "人员代码")
+	@TableId(value = "人员代码",type = IdType.INPUT)
 	private String userId; //用户id
 
 	@ApiModelProperty("密码")
