@@ -32,8 +32,8 @@ public class PermissionController {
      */
     @PostMapping ("/get")
     @ApiOperation(value = "根据id获取",notes = "获取id权限的详细信息")
-    public R<Permission> getById(String userId) {
-        return permissionService.getById1(userId);
+    public R<Permission> getById(@RequestBody Permission userId) {
+        return permissionService.getById1(userId.getUserId());
     }
 
     @PostMapping("/saveOrUpdate")

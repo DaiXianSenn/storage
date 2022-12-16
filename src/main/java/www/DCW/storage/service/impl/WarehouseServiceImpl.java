@@ -1,5 +1,6 @@
 package www.DCW.storage.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,16 @@ import www.DCW.storage.common.R;
 import www.DCW.storage.entity.Goods;
 import www.DCW.storage.entity.Warehouse;
 import www.DCW.storage.mapper.WarehouseMapper;
+import www.DCW.storage.pojo.dto.WarehouseSumDTO;
 import www.DCW.storage.pojo.tto.GoodsInfoTto;
+import www.DCW.storage.pojo.tto.WarehouseSumTTO;
+import www.DCW.storage.pojo.vo.WarehouseSumVo;
 import www.DCW.storage.pojo.vo.WarehouseVoList;
 import www.DCW.storage.service.GoodsService;
 import www.DCW.storage.service.WarehouseService;
 import www.DCW.storage.util.WarehouseOddNo.OddNo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,12 +44,22 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
         return warehouseMapper.getAll();
     }
 
+    @Override
+    public R<List<Warehouse>> getAllToTable(String goodsId,String timeStart,String timeEnd) {
+
+        LambdaQueryWrapper<Warehouse> warehouseLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        warehouseLambdaQueryWrapper.ge(timeStart!=null,Warehouse::getDate,timeStart);
+        warehouseLambdaQueryWrapper.le(timeEnd!=null,Warehouse::getDate,timeEnd);
+        warehouseLambdaQueryWrapper.eq(goodsId!=null,Warehouse::getGoodId,goodsId);
+        return R.success(this.list(warehouseLambdaQueryWrapper));
+    }
 
 
     //入仓操作
     @Override
     public R<String> saveWarehouse(Warehouse warehouse) {
 
+        System.out.println("---------------------------"+warehouse);
         if (warehouse.getGoodId() == null) return R.error("请选择物料");
 
         if (warehouse.getId() == null) {
@@ -88,10 +103,53 @@ public class WarehouseServiceImpl extends ServiceImpl<WarehouseMapper, Warehouse
 
 
         for (Warehouse item : warehousesCollect) {
-            this.saveWarehouse(item);
+            R<String> stringR = this.saveWarehouse(item);
+            System.out.println(stringR);
         }
 
         return R.success("批量操作成功");
+    }
+
+    @Override
+    public R<WarehouseSumDTO> getGoodSum(WarehouseSumVo warehouseTableVo) {
+        LambdaQueryWrapper<Warehouse> warehouseLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        warehouseLambdaQueryWrapper.ge(warehouseTableVo.getStartTime()!=null,Warehouse::getDate,warehouseTableVo.getStartTime());
+        warehouseLambdaQueryWrapper.le(warehouseTableVo.getEndTime()!=null,Warehouse::getDate,warehouseTableVo.getEndTime());
+        List<Warehouse> list = this.list(warehouseLambdaQueryWrapper);
+
+
+        List<WarehouseSumTTO> warehouseSumTTOS = new ArrayList<>();
+        List<Goods> goods = goodsService.getAll(new Goods());
+        int size= goods.size();
+        //初始化变量
+        for(Goods goodsTemp:goods){
+            WarehouseSumTTO warehouseSumTTO=new WarehouseSumTTO();
+            warehouseSumTTO.setIntSum(0);
+            warehouseSumTTO.setOutSum(0);
+            warehouseSumTTO.setGoodsName(goodsTemp.getGoodsName());
+            warehouseSumTTO.setGoodsId(goodsTemp.getGoodsId());
+            warehouseSumTTOS.add(warehouseSumTTO);
+        }
+        for(WarehouseSumTTO warehouseSumTTO:warehouseSumTTOS){
+            for(Warehouse item:list){
+
+                String id = item.getGoodId();
+                int type=item.getType();
+
+                if (type==1&& id.equals(warehouseSumTTO.getGoodsId())){
+
+                    warehouseSumTTO.setIntSum(warehouseSumTTO.getIntSum()+item.getAmount());
+
+                }else if (type==2&&id.equals(warehouseSumTTO.getGoodsId())){
+                    warehouseSumTTO.setOutSum(warehouseSumTTO.getOutSum()+item.getAmount());
+                }
+            }
+        }
+
+        WarehouseSumDTO warehouseSumDTO  =new WarehouseSumDTO();
+        warehouseSumDTO.setWarehouseSum(warehouseSumTTOS);
+
+        return R.success(warehouseSumDTO);
     }
 
 

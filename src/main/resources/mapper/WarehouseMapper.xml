@@ -13,6 +13,7 @@
         }
     </select>
 
+
     <resultMap type="www.DCW.storage.entity.Warehouse" id="WarehouseMap" >
         <result property="id" column="单号" />
         <result property="times" column="次数" />

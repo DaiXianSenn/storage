@@ -15,13 +15,13 @@ import java.util.List;
 
 public interface UserService extends IService<User> {
 
-    R<String> login(User user);
+    R<User> login(User user);
 
     R<String> saveUser(User user);
 
 
     R<String> update(User user);
 
-    R<List<User>> getAll();
+    R<List<User>> getAll(User user);
 
 }

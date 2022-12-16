@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import www.DCW.storage.common.R;
 import www.DCW.storage.entity.Warehouse;
+import www.DCW.storage.pojo.dto.WarehouseSumDTO;
+import www.DCW.storage.pojo.vo.WarehouseSumVo;
+import www.DCW.storage.pojo.vo.WarehouseTableVo;
 import www.DCW.storage.pojo.vo.WarehouseVoList;
 import www.DCW.storage.service.WarehouseService;
 
@@ -65,5 +68,21 @@ public class WarehouseController {
     public R<String> saveWarehouseByList(@RequestBody WarehouseVoList warehouse){
         return warehouseService.saveWarehouseByList(warehouse);
     }
+
+
+    @PostMapping("getAllToTable")
+    @ApiOperation(value = "做报表用到的方法",notes = "三个参数")
+    public R<List<Warehouse>> getAllToTable(@RequestBody WarehouseTableVo warehouseTableVo){
+        return warehouseService.getAllToTable(warehouseTableVo.getGoodId(), warehouseTableVo.getStartTime(), warehouseTableVo.getEndTime());
+    }
+
+    @PostMapping("getGoodSum")
+    @ApiOperation(value = "返回各物料在指定时间内的进出仓辆总数",notes = "暂无描述")
+    public R<WarehouseSumDTO> getGoodSum(@RequestBody WarehouseSumVo warehouseTableVo){
+        return warehouseService.getGoodSum(warehouseTableVo);
+    }
+
+
+
 
 }

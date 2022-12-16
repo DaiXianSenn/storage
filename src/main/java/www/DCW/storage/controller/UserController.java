@@ -43,7 +43,7 @@ public class UserController {
      */
     @PostMapping("/login")
     @ApiOperation(value = "登录",notes = "")
-    public R<String> login(@RequestBody User user){
+    public R<User> login(@RequestBody User user){
         return userService.login(user);
     }
 
@@ -74,5 +74,13 @@ public class UserController {
 
     @PostMapping("/getAll")
     @ApiOperation(value = "获取所有用户",notes = "")
-    public R<List<User>> getAll(){return userService.getAll();}
+    public R<List<User>> getAll(@RequestBody User user){return userService.getAll(user);}
+
+    @PostMapping("/deleteById")
+    @ApiOperation(value = "获取所有用户",notes = "")
+    public R<String> delete(@RequestBody User user){
+        if(userService.removeById(user.getUserId()))
+            return R.success("删除成功");
+        else return R.error("删除失败");
+    }
 }

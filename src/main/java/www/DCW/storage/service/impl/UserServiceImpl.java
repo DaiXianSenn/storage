@@ -29,13 +29,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 
 
-    public R<List<User>> getAll(){
+    public R<List<User>> getAll(User user){
+        LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+
+        lambdaQueryWrapper.like(user.getUserId() != null,User::getUserId,user.getUserId());
+        lambdaQueryWrapper.like(user.getName()!=null,User::getName,user.getName());
+
         //做一些验证
-        return R.success(this.list());
+        return R.success(this.list(lambdaQueryWrapper));
     }
 
     @Override
-    public R<String> login(User user) {
+    public R<User> login(User user) {
         String password = user.getPassword();
         password= DigestUtils.md5DigestAsHex(password.getBytes());
 
@@ -56,9 +61,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 //        String user1 = (String) redisTemplate.opsForValue().get("user");
 //        System.out.println(user1);
 
+        one.setPassword("***");
 
 
-        return R.success("登录成功");
+        return R.success(one);
     }
 
     @Override
